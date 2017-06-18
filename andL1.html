@@ -1,61 +1,15 @@
 <HTML>
 
 <head>
-<style>
-.top {
-    position:absolute;
-    left:0; right:0;
-    height: 40px;
-    padding-left:10px;
-    padding-top:10px;
-    border-bottom: inset;
-    background-color: #ccccff;
-    xmin-width:100%;
-}
-.left {
-    position:absolute;
-    left:0;
-    top:60px; 
-    bottom: 0;
-    width: 178px;
-    padding-top:20px;
-    padding-left:10px;
-    border-right: inset;
-    background-color:  #ccccff;
-}
-.main {
-    position: absolute;
-    left:178px;
-    top:60px;
-    right:0;
-    bottom:0;
-    background-color:  #ccccff;
-}
-.question {
-    padding-top:10px;
-    padding-bottom:10px;
-    padding-left:30px;
-    background-color: #eeeeff;
-}
-.response {
-    background-color: #ffffaa;
-    padding-top:10px;
-    padding-left:30px;
-    padding-bottom:10px;
-}
-.truthtable {
-  border-collapse: collapse;
-  margin-bottom:10px;
-}
-.truthtable td, th {
-  padding: 5px;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="css/question_page.css" />
+<link rel="stylesheet" type="text/css" href="css/objects.css" />
+<link rel="stylesheet" type="text/css" href="css/general.css" />
 
 <script>
 var errorCount = 0;	//number of wrong answers
+</script>
+
+<script type="text/javascript" src="js/questionPage.js">
 </script>
 
 
@@ -63,56 +17,84 @@ var errorCount = 0;	//number of wrong answers
 
 <body>
 
-<div class="top">
-<img src="images/logo.png" /> <span style="font-family:Impact, Charcoal, sans-serif;font-size:150%;">Armul Computing</span>
-<span style="position: absolute;right: 10px;">
+<!------------------------- Title bar -------------------------------->
+
+<div class="titlebar">
+<img src="images/logo.png" /> <span class="logoText">Armul Computing</span>
+<span class="links">
 Login | Home | Help |
 Topic search: <input type="text" id="searchTerm" />
 </span>
 </div>
 
-<div class="left">
+
+<!------------------------- Navigation bar -------------------------------->
+
+<div class="navigation">
 <p>
 Binary<br />
 <ul>
 <li>Logic</li>
 <ul>
 <li><a href="or.html">OR</a></li>
-<li><b>AND</b></li>
+<li class="currentPage">AND</li>
 <li><a href="xor.html">XOR</a></li>
 </ul>
 </ul>
 </p>
 </div>
 
+
+<!------------------------- Main section -------------------------------->
+
 <div class="main">
-<div class="question">
+
+   <!------------------------- Main > Question -------------------------------->
+
+<div class="questionSection">
 
 <h1>AND</h1>
 
+<p>LEVEL 1 / ATTEMPT <span id="attemptNo">1</span></p>
+
 <p>What is the result of the following operation:</p>
 
-<p style="font-size:130%;">0 AND 1</p>
+<p class="questionText"><span id="bit1">0</span> AND <span id="bit2">1</span></p>
+
+<!------ script to generate question --------->
+<!------ it must include at least one 1 as the example uses 0 AND 0--------->
+<script>
+var bit1 = Math.floor(Math.random()*2);
+var bit2 = (bit1 == 0) ? 1 : Math.floor(Math.random()*2);
+document.getElementById("bit1").innerHTML = bit1;
+document.getElementById("bit2").innerHTML = bit2;
+window.answer = (bit1 & bit2).toString();
+</script>
 
 <p>The result is <input type="text" id="studentAnswer" size="2" /> <img id="markSymbol" src="images/blank.png"></p>
 
-<button id="submitAnswer" onclick='this.disabled=true;if(document.getElementById("studentAnswer").value=="0"){document.getElementById("markSymbol").src="images/tick.png";document.getElementById("correct").style.display="block"}else{errorCount++;document.getElementById("markSymbol").src="images/cross.png";document.getElementById("wrong"+errorCount).style.display="block"}'>Check</button>
+<button id="submitAnswer" onclick='submitClicked();'>Check</button>
 
 </div>
-<div id="correct" class="response" style="display:none;">
+
+
+   <!------------------------- Main > Responses -------------------------------->
+
+<div id="correct" class="responseSection">
 <p>Well done, you have correctly answered the Level 1 AND question.</p>
 
-<p>As you did it without any mistakes you have <b>levelled up</b>.</p>
+<p>As you did it without any mistakes you have <span class="emphasis">levelled up</span>.</p>
 
-<p>You are now on AND level 2.</p>
+<p>You have now reached AND level 2.</p>
 
-<button>Next level</button>
+<button onClick="window.location.href='andL2.html';">Next level</button>
 
 </div>
-<div id="wrong1" class="response" style="display:none;">
+<div id="wrong1" class="responseSection">
 <p>Your answer is not correct.</p>
 
 <p>Remember that the truth table for AND is:</p>
+
 <table class="truthtable">
 <tr>
   <th></th>
@@ -131,10 +113,10 @@ Binary<br />
 </tr>
 </table>
 
-<button onclick='document.getElementById("studentAnswer").value="";document.getElementById("markSymbol").src="images/blank.png";document.getElementById("submitAnswer").disabled=false;document.getElementById("wrong1").style.display="none";'>Try again</button>
+<button onclick='retryClicked()'>Try again</button>
 
 </div>
-<div id="wrong2" class="response" style="display:none;">
+<div id="wrong2" class="responseSection">
 <p>Your answer is still not correct.</p>
 
 <p>To find 0 AND 0 you look for the cell which is in the column headed by a 0 and is also in the row beginning with a 0:</p>
@@ -144,12 +126,12 @@ Binary<br />
 <table class="truthtable">
 <tr>
   <th></th>
-  <th style="color:red;">0</th>
+  <th class="selected">0</th>
   <th>1</th>
 </tr>
 <tr>
-  <th style="color:red;">0</th>
-  <td style="color:red;background-color:pink;">0</td>
+  <th class="selected">0</th>
+  <td class="selected">0</td>
   <td>0</td>
 </tr>
 <tr>
@@ -160,10 +142,10 @@ Binary<br />
 </table>
 
 <p>So 0 AND 0 = 0</p>
-<button onclick='document.getElementById("studentAnswer").value="";document.getElementById("markSymbol").src="images/blank.png";document.getElementById("submitAnswer").disabled=false;document.getElementById("wrong2").style.display="none";'>Try again</button>
+<button onclick='retryClicked()'>Try again</button>
 
 </div>
-<div id="wrong3" class="response" style="display:none;">
+<div id="wrong3" class="responseSection">
 <p>Your final answer is not correct.</p>
 
 <p>To find 0 AND 1 you look for the cell which is in the column headed by a 0 and is also in the row beginning with a 1:</p>
@@ -173,7 +155,7 @@ Binary<br />
 <table class="truthtable">
 <tr>
   <th></th>
-  <th style="color:red;">0</th>
+  <th class="selected">0</th>
   <th>1</th>
 </tr>
 <tr>
@@ -182,14 +164,14 @@ Binary<br />
   <td>0</td>
 </tr>
 <tr>
-  <th style="color:red;">1</th>
-  <td style="color:red;background-color:pink;">0</td>
+  <th class="selected">1</th>
+  <td class="selected">0</td>
   <td>1</td>
 </tr>
 </table>
 
 <p>So 0 AND 1 = 0</p>
-<button onclick='document.getElementById("studentAnswer").value="";document.getElementById("markSymbol").src="images/blank.png";document.getElementById("submitAnswer").disabled=false;document.getElementById("wrong3").style.display="none";errorCount=0;'>New Question</button>
+<button onclick='newClicked();'>New Question</button>
 
 </div>
 </div>
