@@ -1,0 +1,17 @@
+.logoText {
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 150%;
+}
+
+.currentPage {
+  font-weight: bold;
+}
+
+.emphasis {
+  font-weight: bold;
+}
+
+/* highlighting */
+.highlight {
+  color:red;
+}

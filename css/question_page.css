@@ -1,0 +1,62 @@
+/* The title/menu bar div */
+.titlebar {
+  position:absolute;
+  left:0; right:0;
+  height: 40px;
+  padding-left:10px;
+  padding-top:10px;
+  border-bottom: inset;
+  background-color: #ccccff;
+}
+
+/* Titlebar links/options */
+.links {
+  position: absolute;
+  right: 10px;
+}
+
+/* The navigation div */
+.navigation {
+  position:absolute;
+  left:0;
+  top:60px; 
+  bottom: 0;
+  width: 178px;
+  padding-top:20px;
+  padding-left:10px;
+  border-right: inset;
+  background-color:  #ccccff;
+}
+
+/* The div containing the question and responses */
+.main {
+  position: absolute;
+  left:178px;
+  top:60px;
+  right:0;
+  bottom:0;
+  background-color:  #ccccff;
+}
+
+/* The div containing the question itself - not responses */
+.questionSection {
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left:30px;
+  background-color: #eeeeff;
+}
+
+.questionSection .questionText {
+  font-size:130%;
+}
+
+/* A response to user input - initially not displayed */
+.responseSection {
+  background-color: #ffffaa;
+  padding-top:10px;
+  padding-left:30px;
+  padding-bottom:10px;
+  display:none;
+}
+
+

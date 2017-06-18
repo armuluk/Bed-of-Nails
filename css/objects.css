@@ -1,0 +1,32 @@
+/* truth table styles*/
+.truthtable {
+  border-collapse: collapse;
+  margin-bottom:10px;
+}
+
+.truthtable td, th {
+  padding: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+/* general table highlighting */
+th.selected {
+  color:red;
+}
+
+td.selected {
+  color:red;
+  background-color:pink;
+}
+
+/* for any sums using a tabular layout */
+.tableSum {
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+td.columnResult {
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+  
