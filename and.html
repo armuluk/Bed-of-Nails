@@ -1,0 +1,198 @@
+<HTML>
+
+<head>
+<style>
+.top {
+    position:absolute;
+    left:0; right:0;
+    height: 40px;
+    padding-left:10px;
+    padding-top:10px;
+    border-bottom: inset;
+    background-color: #ccccff;
+    xmin-width:100%;
+}
+.left {
+    position:absolute;
+    left:0;
+    top:60px; 
+    bottom: 0;
+    width: 178px;
+    padding-top:20px;
+    padding-left:10px;
+    border-right: inset;
+    background-color:  #ccccff;
+}
+.main {
+    position: absolute;
+    left:178px;
+    top:60px;
+    right:0;
+    bottom:0;
+    background-color:  #ccccff;
+}
+.question {
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:30px;
+    background-color: #eeeeff;
+}
+.response {
+    background-color: #ffffaa;
+    padding-top:10px;
+    padding-left:30px;
+    padding-bottom:10px;
+}
+.truthtable {
+  border-collapse: collapse;
+  margin-bottom:10px;
+}
+.truthtable td, th {
+  padding: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+</style>
+
+<script>
+var errorCount = 0;	//number of wrong answers
+</script>
+
+
+</head>
+
+<body>
+
+<div class="top">
+<img src="images/logo.png" /> <span style="font-family:Impact, Charcoal, sans-serif;font-size:150%;">Armul Computing</span>
+<span style="position: absolute;right: 10px;">
+Login | Home | Help |
+Topic search: <input type="text" id="searchTerm" />
+</span>
+</div>
+
+<div class="left">
+<p>
+Binary<br />
+<ul>
+<li>Logic</li>
+<ul>
+<li><a href="or.html">OR</a></li>
+<li><b>AND</b></li>
+<li><a href="xor.html">XOR</a></li>
+</ul>
+</ul>
+</p>
+</div>
+
+<div class="main">
+<div class="question">
+
+<h1>AND</h1>
+
+<p>What is the result of the following operation:</p>
+
+<p style="font-size:130%;">0 AND 1</p>
+
+<p>The result is <input type="text" id="studentAnswer" size="2" /> <img id="markSymbol" src="images/blank.png"></p>
+
+<button id="submitAnswer" onclick='this.disabled=true;if(document.getElementById("studentAnswer").value=="0"){document.getElementById("markSymbol").src="images/tick.png";document.getElementById("correct").style.display="block"}else{errorCount++;document.getElementById("markSymbol").src="images/cross.png";document.getElementById("wrong"+errorCount).style.display="block"}'>Check</button>
+
+</div>
+<div id="correct" class="response" style="display:none;">
+<p>Well done, you have correctly answered the Level 1 AND question.</p>
+
+<p>As you did it without any mistakes you have <b>levelled up</b>.</p>
+
+<p>You are now on AND level 2.</p>
+
+<button>Next level</button>
+
+</div>
+<div id="wrong1" class="response" style="display:none;">
+<p>Your answer is not correct.</p>
+
+<p>Remember that the truth table for AND is:</p>
+<table class="truthtable">
+<tr>
+  <th></th>
+  <th>0</th>
+  <th>1</th>
+</tr>
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>0</td>
+  <td>1</td>
+</tr>
+</table>
+
+<button onclick='document.getElementById("studentAnswer").value="";document.getElementById("markSymbol").src="images/blank.png";document.getElementById("submitAnswer").disabled=false;document.getElementById("wrong1").style.display="none";'>Try again</button>
+
+</div>
+<div id="wrong2" class="response" style="display:none;">
+<p>Your answer is still not correct.</p>
+
+<p>To find 0 AND 0 you look for the cell which is in the column headed by a 0 and is also in the row beginning with a 0:</p>
+
+<p>This is shown in the truth table below.<p>
+
+<table class="truthtable">
+<tr>
+  <th></th>
+  <th style="color:red;">0</th>
+  <th>1</th>
+</tr>
+<tr>
+  <th style="color:red;">0</th>
+  <td style="color:red;background-color:pink;">0</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>0</td>
+  <td>1</td>
+</tr>
+</table>
+
+<p>So 0 AND 0 = 0</p>
+<button onclick='document.getElementById("studentAnswer").value="";document.getElementById("markSymbol").src="images/blank.png";document.getElementById("submitAnswer").disabled=false;document.getElementById("wrong2").style.display="none";'>Try again</button>
+
+</div>
+<div id="wrong3" class="response" style="display:none;">
+<p>Your final answer is not correct.</p>
+
+<p>To find 0 AND 1 you look for the cell which is in the column headed by a 0 and is also in the row beginning with a 1:</p>
+
+<p>This is shown in the truth table below.<p>
+
+<table class="truthtable">
+<tr>
+  <th></th>
+  <th style="color:red;">0</th>
+  <th>1</th>
+</tr>
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th style="color:red;">1</th>
+  <td style="color:red;background-color:pink;">0</td>
+  <td>1</td>
+</tr>
+</table>
+
+<p>So 0 AND 1 = 0</p>
+<button onclick='document.getElementById("studentAnswer").value="";document.getElementById("markSymbol").src="images/blank.png";document.getElementById("submitAnswer").disabled=false;document.getElementById("wrong3").style.display="none";errorCount=0;'>New Question</button>
+
+</div>
+</div>
+</body>
+</HTML>
+
